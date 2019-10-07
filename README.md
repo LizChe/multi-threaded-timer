@@ -24,7 +24,7 @@ Checking a timer prints information about the timer itself: it's name, it's thre
 ### __Example Scenario__
 
 ```shell script
-- Command?
+Command?
 start TEA
 
 Command?
