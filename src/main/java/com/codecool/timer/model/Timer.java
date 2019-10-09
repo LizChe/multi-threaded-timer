@@ -9,7 +9,6 @@ public class Timer implements Runnable {
     private Thread thread;
     private long startTime;
     private long endTime;
-
     private boolean isInterrupted;
 
     public Timer(String name) {
@@ -34,11 +33,7 @@ public class Timer implements Runnable {
         this.endTime = endTime;
     }
 
-    private long startTime() {
-        return System.nanoTime();
-    }
-
-    private long stopTime() {
+    private long getResetTime() {
         return System.nanoTime();
     }
 
@@ -54,20 +49,20 @@ public class Timer implements Runnable {
     @Override
     public void run() {
         if (isRunning()) {
-            startTime = startTime();
+            startTime = getResetTime();
             setStartTime(startTime);
         }
     }
 
     public synchronized void stop() {
-        endTime = stopTime();
+        endTime = getResetTime();
         setEndTime(endTime);
         this.isInterrupted = true;
     }
 
     public void updateStopTime() {
         if (!isInterrupted) {
-            endTime = stopTime();
+            endTime = getResetTime();
             setEndTime(endTime);
         }
     }
