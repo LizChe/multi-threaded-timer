@@ -14,6 +14,10 @@ public class TimerService {
         this.timers = new ArrayList<>();
     }
 
+    public List<Timer> getTimers() {
+        return timers;
+    }
+
     public void handleStartTimer(String timerName) {
         Timer timer = new Timer(timerName);
         if (isStoppedTimer(timer)) {
