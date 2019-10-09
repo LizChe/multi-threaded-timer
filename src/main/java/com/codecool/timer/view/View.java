@@ -1,5 +1,8 @@
 package com.codecool.timer.view;
 
+import com.codecool.timer.model.Timer;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class View {
@@ -35,5 +38,9 @@ public class View {
             throw new IllegalArgumentException("No timer name given");
         }
         return command[1];
+    }
+
+    public void showTimers(List<Timer> timers) {
+        timers.forEach(System.out::println);
     }
 }
