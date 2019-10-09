@@ -13,11 +13,6 @@ public class TimerController {
         this.view = view;
     }
 
-    private void handleStartCommand(String[] intention) {
-        String timerName = view.getTimerName(intention);
-        timerService.handleStartTimer(timerName);
-    }
-
     public void run() {
         String[] intention;
         String timerName;
@@ -32,10 +27,23 @@ public class TimerController {
                 case "start":
                     handleStartCommand(intention);
                     break;
+                case "check":
+                    handleCheckCommand();
+                    break;
                 default:
                     System.out.println("No such option.");
                     break;
             }
         }
+    }
+
+    private void handleStartCommand(String[] intention) {
+        String timerName = view.getTimerName(intention);
+        timerService.handleStartTimer(timerName);
+    }
+
+    private void handleCheckCommand() {
+        timerService.handleCheckTimers();
+        view.showTimers(timerService.getTimers());
     }
 }
