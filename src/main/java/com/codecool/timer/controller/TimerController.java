@@ -1,14 +1,14 @@
 package com.codecool.timer.controller;
 
 import com.codecool.timer.service.TimerService;
-import com.codecool.timer.view.View;
+import com.codecool.timer.view.TerminalView;
 
 public class TimerController {
 
     private TimerService timerService;
-    private View view;
+    private TerminalView view;
 
-    public TimerController(TimerService timerService, View view) {
+    public TimerController(TimerService timerService, TerminalView view) {
         this.timerService = timerService;
         this.view = view;
     }
@@ -21,7 +21,7 @@ public class TimerController {
         while (isRunning) {
             view.printText("Command?");
             intention = view.getUserIntention();
-            command = view.getCommand(intention);
+            command = view.getExtractedCommandFrom(intention);
             switch (command) {
                 case "start":
                     handleStartCommand(intention);
@@ -44,7 +44,7 @@ public class TimerController {
     }
 
     private void handleStartCommand(String[] intention) {
-        String timerName = view.getTimerName(intention);
+        String timerName = view.getExtractedTimerNameFrom(intention);
         timerService.handleStartTimer(timerName);
     }
 
@@ -54,7 +54,7 @@ public class TimerController {
     }
 
     private void handleStopCommand(String[] intention) {
-        String timerName = view.getTimerName(intention);
+        String timerName = view.getExtractedTimerNameFrom(intention);
         timerService.handleStopTimer(timerName);
     }
 }
