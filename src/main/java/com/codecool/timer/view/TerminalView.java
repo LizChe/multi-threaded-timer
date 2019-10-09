@@ -5,11 +5,11 @@ import com.codecool.timer.model.Timer;
 import java.util.List;
 import java.util.Scanner;
 
-public class View {
+public class TerminalView {
 
     private Scanner scanner;
 
-    public View() {
+    public TerminalView() {
         scanner = new Scanner(System.in);
     }
 

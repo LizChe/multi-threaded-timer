@@ -1,14 +1,14 @@
 package com.codecool.timer.controller;
 
 import com.codecool.timer.service.TimerService;
-import com.codecool.timer.view.View;
+import com.codecool.timer.view.TerminalView;
 
 public class TimerController {
 
     private TimerService timerService;
-    private View view;
+    private TerminalView view;
 
-    public TimerController(TimerService timerService, View view) {
+    public TimerController(TimerService timerService, TerminalView view) {
         this.timerService = timerService;
         this.view = view;
     }
