@@ -27,10 +27,19 @@ public class TimerService {
         timer.ifPresent(Timer::stop);
     }
 
+    public void handleCheckTimers() {
+        timers.forEach(Timer::updateStopTime);
+        showTimers();
+    }
+
     private Optional<Timer> getTimerByName(String timerName) {
         return timers.stream()
                 .filter(timer -> timer.getName().equals(timerName))
                 .findFirst();
+    }
+
+    private void showTimers() {
+        timers.forEach(System.out::println);
     }
 
     private boolean isStoppedTimer(Timer timer) {
