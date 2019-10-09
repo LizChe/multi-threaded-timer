@@ -2,6 +2,7 @@ package com.codecool.timer.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.codecool.timer.model.Timer;
 
@@ -19,6 +20,17 @@ public class TimerService {
             timers.remove(timer);
         }
         timers.add(timer);
+    }
+
+    public void handleStopTimer(String timerName) {
+        Optional<Timer> timer = getTimerByName(timerName);
+        timer.ifPresent(Timer::stop);
+    }
+
+    private Optional<Timer> getTimerByName(String timerName) {
+        return timers.stream()
+                .filter(timer -> timer.getName().equals(timerName))
+                .findFirst();
     }
 
     private boolean isStoppedTimer(Timer timer) {
