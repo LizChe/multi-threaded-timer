@@ -21,11 +21,8 @@ public class TerminalView {
         System.out.println(message);
     }
 
-    public String getCommand(String[] command) {
-        if (command.length < 1) {
-            throw new IllegalArgumentException("No command provided.");
-        }
-        return command[0];
+    public void showTimers(List<Timer> timers) {
+        timers.forEach(System.out::println);
     }
 
     public String[] getUserIntention() {
@@ -33,14 +30,18 @@ public class TerminalView {
         return command.split(" ");
     }
 
-    public String getTimerName(String[] command) {
-        if (command.length < 2) {
-            throw new IllegalArgumentException("No timer name given");
-        }
-        return command[1];
+    public String getExtractedCommandFrom(String[] intention) {
+        return getParsedIntention(intention, 0, "No command provided.");
     }
 
-    public void showTimers(List<Timer> timers) {
-        timers.forEach(System.out::println);
+    public String getExtractedTimerNameFrom(String[] intention) {
+        return getParsedIntention(intention, 1, "No timer name given.");
+    }
+
+    private String getParsedIntention(String[] intention, int index, String exceptionMessage) {
+        if (intention.length < index + 1) {
+            throw new IllegalArgumentException(exceptionMessage);
+        }
+        return intention[index];
     }
 }
