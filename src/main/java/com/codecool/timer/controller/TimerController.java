@@ -15,7 +15,6 @@ public class TimerController {
 
     public void run() {
         String[] intention;
-        String timerName;
         String command;
 
         boolean isRunning = true;
@@ -29,6 +28,9 @@ public class TimerController {
                     break;
                 case "check":
                     handleCheckCommand();
+                    break;
+                case "stop":
+                    handleStopCommand(intention);
                     break;
                 default:
                     System.out.println("No such option.");
@@ -45,5 +47,10 @@ public class TimerController {
     private void handleCheckCommand() {
         timerService.handleCheckTimers();
         view.showTimers(timerService.getTimers());
+    }
+
+    private void handleStopCommand(String[] intention) {
+        String timerName = view.getTimerName(intention);
+        timerService.handleStopTimer(timerName);
     }
 }
