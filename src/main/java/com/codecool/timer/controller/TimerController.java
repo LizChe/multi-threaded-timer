@@ -32,6 +32,10 @@ public class TimerController {
                 case "stop":
                     handleStopCommand(intention);
                     break;
+                case "exit":
+                    handleCheckCommand();
+                    isRunning = false;
+                    break;
                 default:
                     System.out.println("No such option.");
                     break;
